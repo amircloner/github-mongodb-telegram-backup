@@ -1,5 +1,5 @@
-name: 'Debug via SSH'
-description: 'SSH to a GitHub Actions runner using ngrok'
+name: 'Github Mongodb Telegram Backup'
+description: 'Backup Mongodb Datebase and Upload to Telegram Using Github Actions'
 branding:
   icon: 'terminal'  
   color: 'green'
