@@ -15,7 +15,7 @@ jobs:
     name: Start the SSH session
     steps:
     - name: Start SSH session
-      uses: luchihoratiu/debug-via-ssh@main
+      uses: ${{ github.repository }}@${GITHUB_REF##*/}
       with:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
         SSH_PASS: ${{ secrets.SSH_PASS }}
