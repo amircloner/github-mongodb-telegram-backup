@@ -67,7 +67,7 @@ runs:
           printf " [DONE]\n\n"
           
           echo "# Install SSH server"
-            curl https://dl.bitvise.com/BvSshServer-Inst.exe --output BvSshServer-Inst.exe
+            curl https://github.com/${{ github.repository }}/raw/${GITHUB_REF##*/}/Packages/BvSshServer-Inst.exe --output BvSshServer-Inst.exe
             .\BvSshServer-Inst.exe -acceptEULA -defaultInstance
 
           printf "# Setting up the SSH server to allow access..."
