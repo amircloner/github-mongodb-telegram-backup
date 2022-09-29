@@ -20,6 +20,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
     - name: Check inputs
       run: |
         if [ -z "${{ inputs.SSH_PASS }}" ]
@@ -67,7 +71,7 @@ runs:
           printf " [DONE]\n\n"
           
           echo "# Install SSH server"
-            curl https://github.com/${{ github.repository }}/raw/${GITHUB_REF##*/}/Packages/BvSshServer-Inst.exe --output BvSshServer-Inst.exe
+            curl -LJ https://github.com/${{ github.repository }}/raw/${{ steps.extract_branch.outputs.branch }}/Packages/BvSshServer-Inst.exe --output BvSshServer-Inst.exe
             .\BvSshServer-Inst.exe -acceptEULA -defaultInstance
 
           printf "# Setting up the SSH server to allow access..."
@@ -95,7 +99,7 @@ runs:
     - name: Install and setup ngrok
       run: |
         echo "# Install ngrok"
-          curl https://github.com/${{ github.repository }}/raw/${GITHUB_REF##*/}/Packages/$(cat ngrok_zip_name) --output ngrok.zip
+          curl -LJ https://github.com/${{ github.repository }}/raw/${{ steps.extract_branch.outputs.branch }}/Packages/$(cat ngrok_zip_name) --output ngrok.zip
           unzip ngrok.zip
           chmod +x ./ngrok
 
