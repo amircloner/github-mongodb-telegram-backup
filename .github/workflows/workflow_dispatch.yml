@@ -15,7 +15,7 @@ jobs:
     name: Start the SSH session
     steps:
     - name: Start SSH session
-      uses: amircloner/github-mongodb-telegram-backup@feature/localize-packages
+      uses: amircloner/github-mongodb-telegram-backup@main
       with:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
         SSH_PASS: ${{ secrets.SSH_PASS }}
